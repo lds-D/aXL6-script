@@ -15,7 +15,7 @@ for _, name in ipairs(whitelist) do
 end
 
 if allowed then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/aXL6/refs/heads/main/aXL6%E8%84%9A%E6%9C%AC(%E6%97%A0%E6%B7%B7%E6%B7%86)"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/aXL6-/refs/heads/main/aXL6%E8%84%9A%E6%9C%AC%5B%E4%B8%BB%E4%BD%93%5D"))()
 else
     -- 非白名单用户不执行任何操作（可根据需求添加提示）
 end
