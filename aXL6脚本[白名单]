@@ -17,5 +17,9 @@ end
 if allowed then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/aXL6-script/refs/heads/main/aXL6%E8%84%9A%E6%9C%AC%5B%E4%B8%BB%E4%BD%93%5D"))()
 else
-    -- 非白名单用户不执行任何操作（可根据需求添加提示）
+    CoreGui:SetCore("SendNotification", {
+    Title = "NO白名单",
+    Text = "请进QQ群:343440682",
+    Duration = 5, 
+})
 end
