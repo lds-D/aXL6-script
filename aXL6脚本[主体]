@@ -5,6 +5,7 @@ CoreGui:SetCore("SendNotification", {
     Text = "反挂机开启中",
     Duration = 5, 
 })
+print("反挂机开启")local a=game:GetService("UserInputService")local b=game:GetService("VirtualInputManager")local c=game:GetService("RunService")local d=600 local e=10 local f=0.1 local g=0 local h=false local function i()g=0 end a.InputBegan:Connect(function(j,k)if not k then i()end end)c.Heartbeat:Connect(function(k)if h then return end g=g+k if g>=d then h=true local l=workspace.CurrentCamera local m=l.ViewportSize local n,o=m.X/2,m.Y/2 local p=a.TouchEnabled for q=1,e do if p then b:SendTouchEvent(n,o,0,true,game)b:SendTouchEvent(n,o,0,false,game)else b:SendMouseButtonEvent(n,o,0,true,game,0)b:SendMouseButtonEvent(n,o,0,false,game,0)end task.wait(f)end i()h=false end end)
 local Start = tick()
 local ui = loadstring(game:HttpGet("https://pastebin.com/raw/3vQbADjh"))()
 local win = ui:new("aXL6脚本")
