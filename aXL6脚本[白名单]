@@ -1,0 +1,21 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+if not player then
+    repeat task.wait() until Players.LocalPlayer
+    player = Players.LocalPlayer
+end
+
+local whitelist = {"aXL6_NB"}
+local allowed = false
+for _, name in ipairs(whitelist) do
+    if player.Name == name then
+        allowed = true
+        break
+    end
+end
+
+if allowed then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/lds-D/aXL6/refs/heads/main/aXL6%E8%84%9A%E6%9C%AC(%E6%97%A0%E6%B7%B7%E6%B7%86)"))()
+else
+    -- 非白名单用户不执行任何操作（可根据需求添加提示）
+end
