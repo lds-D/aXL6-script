@@ -1,3 +1,10 @@
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "欢迎白名单用户",
+    Text = "反挂机开启中",
+    Duration = 5, 
+})
 local Start = tick()
 local ui = loadstring(game:HttpGet("https://pastebin.com/raw/3vQbADjh"))()
 local win = ui:new("aXL6脚本")
@@ -7,3 +14,5 @@ about:Label("本脚本永久公益倒卖死全家全家送进火葬场!😂😂�
 about:Label("开源死全家全家骨灰都被风吹走了!😂😂😂")
 local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新请等更新了再来看")
+local UITab1 = win:Tab("本地玩家功能","7734068321")
+local about = UITab1:section("属性",false)
