@@ -37,7 +37,7 @@ about:Textbox("移动速度", "tpwalking", "输入", function(king)
         end
     end
 end)
-about:Textbox("可调节跳跃高度", "tpwalking", "输入", function(king)
+about:Textbox("跳跃高度", "tpwalking", "输入", function(king)
     local player = game:GetService("Players")
     local lplr = player.LocalPlayer
     local chr = lplr.Character
