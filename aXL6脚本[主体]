@@ -53,11 +53,56 @@ about:Textbox("跳跃高度", "tpjump", "输入", function(king)
     end
 end)
 local about = UITab1:section("功能",true)
+local player = game.Players.LocalPlayer
+local enabled = false
+local connections = {}
+
+local function onCharacter(character)
+    local hum = character:WaitForChild("Humanoid")
+    local conn = hum.StateChanged:Connect(function(_, new)
+        if new == Enum.HumanoidStateType.Freefall and enabled then
+            hum:ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end)
+    table.insert(connections, conn)
+end
+
+local function enable()
+    if enabled then return end
+    enabled = true
+    local charConn = player.CharacterAdded:Connect(onCharacter)
+    table.insert(connections, charConn)
+    if player.Character then
+        onCharacter(player.Character)
+    end
+end
+
+local function disable()
+    if not enabled then return end
+    enabled = false
+    for _, conn in ipairs(connections) do
+        conn:Disconnect()
+    end
+    connections = {}
+end
+
+about:Toggle(
+    "无限跳",
+    "开关",
+    false,
+    function(v)
+        if v then
+            enable()
+        else
+            disable()
+        end
+    end
+)
 local UITab1 = win:Tab("通用功能","7734068321")
 local UITab1 = win:Tab("战斗功能","7734068321")
 local about = UITab1:section("通用",true)
 local LP = game.Players.LocalPlayer
-local toggleConnection  -- 用于存放心跳连接
+local toggleConnection
 about:Toggle("全图吸人", "开关", false, function(state)
     if state then
         if not toggleConnection then
@@ -80,7 +125,6 @@ about:Toggle("全图吸人", "开关", false, function(state)
             end)
         end
     else
-        -- 关闭：断开循环
         if toggleConnection then
             toggleConnection:Disconnect()
             toggleConnection = nil
