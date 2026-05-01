@@ -53,7 +53,7 @@ about:Textbox("跳跃高度", "tpjump", "输入", function(king)
     end
 end)
 local about = UITab1:section("功能",true)
-local about:Toggle("无限跳", "IJ", false, function(enabled)
+about:Toggle("无限跳", "IJ", false, function(enabled)
     getgenv().InfJ = enabled
     game:GetService("UserInputService").JumpRequest:Connect(function()
         if InfJ == true then
