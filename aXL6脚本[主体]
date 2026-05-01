@@ -55,5 +55,37 @@ end)
 local about = UITab1:section("功能",true)
 local UITab1 = win:Tab("通用功能","7734068321")
 local UITab1 = win:Tab("战斗功能","7734068321")
+local about = UITab1:section("通用",true)
+local LP = game.Players.LocalPlayer
+local toggleConnection  -- 用于存放心跳连接
+about:Toggle("全图吸人", "开关", false, function(state)
+    if state then
+        if not toggleConnection then
+            toggleConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                local myChar = LP.Character
+                if myChar and myChar:FindFirstChild("HumanoidRootPart") then
+                    local myRoot = myChar.HumanoidRootPart
+                    for _, p in ipairs(game.Players:GetPlayers()) do
+                        if p ~= LP then
+                            local c = p.Character
+                            if c and c:FindFirstChild("HumanoidRootPart") and c:FindFirstChild("Humanoid") then
+                                c.Humanoid.WalkSpeed = 0
+                                c.Humanoid.JumpPower = 0
+                                c.HumanoidRootPart.Anchored = true
+                                c.HumanoidRootPart.CFrame = myRoot.CFrame * CFrame.new(0, 0, -3)
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    else
+        -- 关闭：断开循环
+        if toggleConnection then
+            toggleConnection:Disconnect()
+            toggleConnection = nil
+        end
+    end
+end)
 local UITab1 = win:Tab("视觉功能","7734068321")
 local UITab1 = win:Tab("娱乐功能","7734068321")
