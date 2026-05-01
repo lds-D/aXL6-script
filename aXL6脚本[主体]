@@ -2,13 +2,13 @@ local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
     Title = "欢迎白名单用户",
-    Text = "aXL6反挂机V1开启中",
+    Text = "aXL6反挂机开启中",
     Duration = 5, 
 })
 local a=game:GetService("UserInputService")local b=game:GetService("VirtualInputManager")local c=game:GetService("RunService")local d=600 local e=10 local f=0.1 local g=0 local h=false local function i()g=0 end a.InputBegan:Connect(function(j,k)if not k then i()end end)c.Heartbeat:Connect(function(k)if h then return end g=g+k if g>=d then h=true local l=workspace.CurrentCamera local m=l.ViewportSize local n,o=m.X/2,m.Y/2 local p=a.TouchEnabled for q=1,e do if p then b:SendTouchEvent(n,o,0,true,game)b:SendTouchEvent(n,o,0,false,game)else b:SendMouseButtonEvent(n,o,0,true,game,0)b:SendMouseButtonEvent(n,o,0,false,game,0)end task.wait(f)end i()h=false end end)
 CoreGui:SetCore("SendNotification", {
     Title = "反挂机",
-    Text = "aXL6反挂机V1已开启",
+    Text = "aXL6反挂机已开启",
     Duration = 5, 
 })
 local Start = tick()
@@ -21,7 +21,8 @@ about:Label("开源死全家全家骨灰都被风吹走了!😂😂😂")
 local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新请等更新了再来看")
 local UITab1 = win:Tab("必开","7734068321")
-local about = UITab1:section("1",true)
+local about = UITab1:section("通用",true)
+about:Toggle("aXL6绕过反作弊V1.0","按钮",false,function(v)
 local UITab1 = win:Tab("本地玩家功能","7734068321")
 local about = UITab1:section("属性",true)
 about:Textbox("移动速度", "tpwalking", "输入", function(king)
@@ -50,3 +51,4 @@ about:Textbox("跳跃高度", "tpwalking", "输入", function(king)
         end
     end
 end)
+local about = UITab1:section("功能",true)
