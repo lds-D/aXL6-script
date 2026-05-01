@@ -22,6 +22,9 @@ local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新请等更新了再来看")
 local UITab1 = win:Tab("必开","7734068321")
 local about = UITab1:section("1",true)
+section:Button("aXL6绕过反作弊V1", function()
+    
+end)
 local UITab1 = win:Tab("本地玩家功能","7734068321")
 local about = UITab1:section("属性",true)
 
