@@ -24,4 +24,3 @@ local UITab1 = win:Tab("必开","7734068321")
 local about = UITab1:section("1",true)
 local UITab1 = win:Tab("本地玩家功能","7734068321")
 local about = UITab1:section("属性",true)
-
