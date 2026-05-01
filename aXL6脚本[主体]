@@ -39,17 +39,14 @@ about:Textbox("移动速度", "tpwalking", "输入", function(king)
         end
     end
 end)
-about:Textbox("跳跃高度", "tpwalking", "输入", function(king)
+about:Textbox("跳跃高度", "tpjump", "输入", function(king)
+    local jpower = tonumber(king)
     local player = game:GetService("Players")
     local lplr = player.LocalPlayer
     local chr = lplr.Character
     local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
-    
     if hum then
-        local newJump = tonumber(king)
-        if newJump then
-            hum.JumpPower = newJump
-        end
+        hum.JumpPower = jpower or 50
     end
 end)
 local about = UITab1:section("功能",true)
