@@ -48,7 +48,7 @@ about:Textbox("跳跃高度", "tpjump", "输入", function(king)
     if hum then
         local newJump = tonumber(king)
         if newJump then
-            hum.JumpPower = newJump
+            hum.JumpPower = newPower
         end
     end
 end)
