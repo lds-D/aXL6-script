@@ -24,3 +24,17 @@ local UITab1 = win:Tab("必开","7734068321")
 local about = UITab1:section("1",true)
 local UITab1 = win:Tab("本地玩家功能","7734068321")
 local about = UITab1:section("属性",true)
+about:Toggle("快跑开关","开关",false,function(v)
+                if v == true then
+                    sudu = game:GetService("RunService").Heartbeat:Connect(function()
+                        if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.Humanoid and game:GetService("Players").LocalPlayer.Character.Humanoid.Parent then
+                            if game:GetService("Players").LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                                game:GetService("Players").LocalPlayer.Character:TranslateBy(game:GetService("Players").LocalPlayer.Character.Humanoid.MoveDirection * Speed / 10)
+                            end
+                        end
+                    end)
+                elseif not v and sudu then
+                    sudu:Disconnect()
+                    sudu = nil
+                end
+            end)
