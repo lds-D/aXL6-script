@@ -53,51 +53,20 @@ about:Textbox("跳跃高度", "tpjump", "输入", function(king)
     end
 end)
 local about = UITab1:section("功能",true)
-local player = game.Players.LocalPlayer
-local enabled = false
-local connections = {}
-
-local function onCharacter(character)
-    local hum = character:WaitForChild("Humanoid")
-    local conn = hum.StateChanged:Connect(function(_, new)
-        if new == Enum.HumanoidStateType.Freefall and enabled then
-            hum:ChangeState(Enum.HumanoidStateType.Jumping)
+local about:Toggle("无限跳", "IJ", false, function(enabled)
+    getgenv().InfJ = enabled
+    game:GetService("UserInputService").JumpRequest:Connect(function()
+        if InfJ == true then
+            local character = game:GetService("Players").LocalPlayer.Character
+            if character then
+                local humanoid = character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid:ChangeState("Jumping")
+                end
+            end
         end
     end)
-    table.insert(connections, conn)
-end
-
-local function enable()
-    if enabled then return end
-    enabled = true
-    local charConn = player.CharacterAdded:Connect(onCharacter)
-    table.insert(connections, charConn)
-    if player.Character then
-        onCharacter(player.Character)
-    end
-end
-
-local function disable()
-    if not enabled then return end
-    enabled = false
-    for _, conn in ipairs(connections) do
-        conn:Disconnect()
-    end
-    connections = {}
-end
-
-about:Toggle(
-    "无限跳",
-    "开关",
-    false,
-    function(v)
-        if v then
-            enable()
-        else
-            disable()
-        end
-    end
-)
+end)
 local UITab1 = win:Tab("通用功能","7734068321")
 local UITab1 = win:Tab("战斗功能","7734068321")
 local about = UITab1:section("通用",true)
