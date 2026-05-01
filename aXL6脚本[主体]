@@ -87,5 +87,49 @@ about:Toggle("全图吸人", "开关", false, function(state)
         end
     end
 end)
+local player = game.Players.LocalPlayer
+local target = nil
+local enabled = false
+
+about:Toggle("附身玩家", "开关", false, function(v)
+    enabled = v
+    if not v then
+        target = nil
+    end
+end)
+
+while wait(0.1) do
+    if enabled then
+        if not target or not target.Character or not target.Character:FindFirstChild("Humanoid") or target.Character.Humanoid.Health <= 0 then
+            local char = player.Character
+            if char and char:FindFirstChild("HumanoidRootPart") then
+                local myPos = char.HumanoidRootPart.Position
+                local minDist, closest = math.huge, nil
+                for _, p in ipairs(game.Players:GetPlayers()) do
+                    if p ~= player and p.Character then
+                        local hum = p.Character:FindFirstChild("Humanoid")
+                        local root = p.Character:FindFirstChild("HumanoidRootPart")
+                        if hum and hum.Health > 0 and root then
+                            local dist = (myPos - root.Position).Magnitude
+                            if dist < minDist then
+                                minDist = dist
+                                closest = p
+                            end
+                        end
+                    end
+                end
+                target = closest
+            end
+        end
+
+        if target then
+            local myRoot = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+            local targetRoot = target.Character and target.Character:FindFirstChild("HumanoidRootPart")
+            if myRoot and targetRoot then
+                myRoot.CFrame = targetRoot.CFrame + Vector3.new(0, 3, 0)
+            end
+        end
+    end
+end
 local UITab1 = win:Tab("视觉功能","7734068321")
 local UITab1 = win:Tab("娱乐功能","7734068321")
