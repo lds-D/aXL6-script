@@ -19,7 +19,7 @@ if allowed then
 else
     CoreGui:SetCore("SendNotification", {
     Title = "NO白名单",
-    Text = "请进QQ群:343440682",
+    Text = "请找作者要白名单",
     Duration = 5, 
 })
 end
