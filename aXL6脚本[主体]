@@ -22,84 +22,8 @@ local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新请等更新了再来看")
 local UITab1 = win:Tab("必开","7734068321")
 local about = UITab1:section("通用",true)
-about:Toggle("aXL6绕过反作弊V1.0", "开关", false, function(v)
-    local function layer1()
-        if getgenv then getgenv().debug_mode = false end
-        local mt = getrawmetatable(game)
-        local old = mt.__index
-        mt.__index = newcclosure(function(t, k)
-            if k == "IsLoaded" or k == "WaitForChild" then
-            end
-            return old(t, k)
-        end)
-    end
-
-    local function destroyAntiCheatModules()
-        local services = {"ReplicatedStorage", "Workspace", "Players"}
-        for _, srvName in ipairs(services) do
-            local srv = game:GetService(srvName)
-            for _, obj in ipairs(srv:GetDescendants()) do
-                if obj:IsA("Script") or obj:IsA("LocalScript") or obj:IsA("ModuleScript") then
-                    local src = obj.Source or ""
-                    if src:lower():find("anticheat") or src:lower():find("ban") then
-                        obj:Destroy()
-                    end
-                end
-            end
-        end
-    end
-
-    local function hookRemotes()
-        local remotes = {"RE", "RF"}
-        local rs = game:GetService("ReplicatedStorage")
-        for _, name in ipairs(remotes) do
-            local obj = rs:FindFirstChild(name)
-            if obj then
-                if obj:IsA("RemoteEvent") then
-                    local oldFireServer = obj.FireServer
-                    obj.FireServer = newcclosure(function(self, ...)
-                        return oldFireServer(self, ...)
-                    end)
-                elseif obj:IsA("RemoteFunction") then
-                    local oldInvoke = obj.InvokeServer
-                    obj.InvokeServer = newcclosure(function(self, ...)
-                        return oldInvoke(self, ...)
-                    end)
-                end
-            end
-        end
-    end
-
-    local function hideInjection()
-        local env = getgenv()
-        env["injector_handle"] = nil
-        env["bypass_flag"] = nil
-        debug.setconstant = nil
-        debug.setupvalue = nil
-        local connections = getconnections and getconnections(game:GetService("RunService").Heartbeat) or {}
-        for _, Signal in ipairs(connections) do
-            Signal:Disable()
-        end
-    end
-
-    local function disguiseAsNormalPlayer()
-        local uis = game:GetService("UserInputService")
-        uis.InputBegan:Connect(function(input, processed) end)
-        local player = game.Players.LocalPlayer
-        player.CharacterAdded:Connect(function(char) end)
-    end
-
-    local function fullBypass()
-        layer1()
-        destroyAntiCheatModules()
-        hookRemotes()
-        hideInjection()
-        disguiseAsNormalPlayer()
-        for i = 51, 100 do end
-    end
-
-    task.spawn(fullBypass)
-end)
+about:Toggle("aXL6绕过反作弊V1.0","开关",false,function(v)
+local A=function()local mt=getrawmetatable(game)local oi=mt.__index mt.__index=newcclosure(function(t,k)if k=="IsLoaded"then return true elseif k=="WaitForChild"then return function()end elseif type(k)=="string"and k:lower():find("exploit")then return nil end return oi(t,k)end)local on=mt.__newindex mt.__newindex=newcclosure(function(t,k,v)if t==game and(k=="Workspace"or k=="Players")then return end return on(t,k,v)end)end;local B=function()local ss={"ReplicatedStorage","Workspace","Players","PlayerGui","Lighting"}for _,sn in ipairs(ss)do local srv=game:GetService(sn)if srv then for _,obj in ipairs(srv:GetDescendants())do if obj:IsA("Script")or obj:IsA("LocalScript")or obj:IsA("ModuleScript")then local src=obj.Source or""if src:lower():find("anticheat")or src:lower():find("ban")then obj.Disabled=true obj.Source="--"end end end end end end;local C=function()local rs=game:GetService("ReplicatedStorage")for _,obj in ipairs(rs:GetDescendants())do if obj:IsA("RemoteEvent")then local of=obj.FireServer obj.FireServer=newcclosure(function(s,...)return of(s,...)end)elseif obj:IsA("RemoteFunction")then local oi=obj.InvokeServer obj.InvokeServer=newcclosure(function(s,...)return oi(s,...)end)end end end;local D=function()local env=getgenv()env.injector_handle=nil env.bypass_flag=nil env.syn=nil debug.setconstant=nil debug.setupvalue=nil getfenv=nil setfenv=nil for _,c in ipairs(getconnections(game:GetService("RunService").Heartbeat))do c:Disable()end end;local E=function()local uis=game:GetService("UserInputService")uis.InputBegan:Connect(function()end)uis.InputEnded:Connect(function()end)game.Players.LocalPlayer.CharacterAdded:Connect(function()end)end;local F=function()local plr=game.Players.LocalPlayer local ok=plr.Kick plr.Kick=newcclosure(function()end)end;local G=function()local old=game.GetService game.GetService=newcclosure(function(self,s)if s:lower()=="logservice"then return nil end return old(self,s)end)end;local H=function()local old=Instance.new Instance.new=newcclosure(function(cn,p)local o=old(cn,p)if cn=="Script"or cn=="LocalScript"then task.spawn(function()while true do if o.Parent~=nil then break end task.wait()end if(o.Source or""):lower():find("anticheat")then o.Disabled=true end end)end return o end)end;task.spawn(function()A()B()C()D()E()F()G()H()for i=51,100 do end end)end)
 local UITab1 = win:Tab("本地玩家功能","7734068321")
 local about = UITab1:section("属性",true)
 about:Textbox("移动速度", "tpwalking", "输入", function(king)
