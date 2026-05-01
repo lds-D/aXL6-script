@@ -145,4 +145,6 @@ while wait(0.1) do
     end
 end
 local UITab1 = win:Tab("视觉功能","7734068321")
+local about = UITab1:section("透视ESP",true)
 local UITab1 = win:Tab("娱乐功能","7734068321")
+local about = UITab1:section("作者还在想到中",true)
