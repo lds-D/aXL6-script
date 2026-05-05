@@ -20,3 +20,6 @@ about:Label("本脚本永久公益倒卖死全家全家送进火葬场!😂😂�
 about:Label("开源死全家全家骨灰都被风吹走了!😂😂😂")
 local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新")
+local UITab1 = win:Tab("1","7734068321")
+local about = UITab1:section("俄亥俄工具",true)
+about:Toggle("靠近自动攻击(需要拿起武器)", "AutoAttack", false, function(enabled)
