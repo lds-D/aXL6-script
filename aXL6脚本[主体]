@@ -22,7 +22,7 @@ local about = UITab1:section("📢更新",true)
 about:Label("暂时还没更新")
 local UITab1 = win:Tab("1","7734068321")
 local about = UITab1:section("俄亥俄工具",true)
-about:Button("召唤汽车风暴(无限循环)"),function()
+about:Button("召唤汽车风暴(无限循环)",function()
     local Players = game:GetService("Players")
 local localPlayer = Players.LocalPlayer
 local replicatedStorage = game:GetService("ReplicatedStorage")
